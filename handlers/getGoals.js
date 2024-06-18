@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
 
 const goalSchema = new mongoose.Schema({
   title: String,
@@ -19,5 +18,8 @@ module.exports = async function () {
     return allGoals;
   } catch (err) {
     console.log("Error in dealing with db...", err);
+  } finally {
+    // close db connection
+    await mongoose.connection.close();
   }
 };

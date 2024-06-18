@@ -1,15 +1,18 @@
 const getGoals = require("./handlers/getGoals");
+require("dotenv").config();
 
-module.exports.handler = async function (event, context) {
+async function main(event, context) {
   try {
     // Parse the event body
-    /* const body = JSON.parse(event.body);
-    console.log("Parsed body:", body); */
+    const body = JSON.parse(event.body);
+    console.log("Parsed body:", body);
 
-    // Retrieve from db list of goals
-    const goals = await getGoals();
-
-    console.log(goals);
+    // if is inline_query
+    if (body.inline_query) {
+      // Retrieve from db list of goals
+      const goals = await getGoals();
+      console.log(goals);
+    }
 
     return {
       statusCode: 200,
@@ -33,4 +36,6 @@ module.exports.handler = async function (event, context) {
       }),
     };
   }
-};
+}
+
+main();
