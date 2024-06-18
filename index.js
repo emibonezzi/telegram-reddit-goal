@@ -1,5 +1,5 @@
 const getGoals = require("./handlers/getGoals");
-require("dotenv").config();
+const sendInline = require("./handlers/sendInline");
 
 module.exports.handler = async function (event, context) {
   try {
@@ -7,12 +7,24 @@ module.exports.handler = async function (event, context) {
     const body = JSON.parse(event.body);
     console.log("Parsed body:", body);
 
-    // if is inline_query
-    if (body.inline_query) {
-      // Retrieve from db list of goals
-      const goals = await getGoals();
-      console.log(goals);
-    }
+    // get inline_query id
+    const inlineQueryId = body.inline_query.id;
+
+    console.log("Inline query id: ", inlineQueryId);
+
+    // Retrieve from db list of goals
+    const goals = await getGoals();
+    const inlineResults = goals.map((item) => ({
+      type: "article",
+      id: item._id,
+      title: item.title,
+      message_text: "This is the second item",
+    }));
+
+    console.log("Results", inlineResults);
+
+    // send inline results
+    await sendInline(inlineQueryId, inlineResults);
 
     return {
       statusCode: 200,
