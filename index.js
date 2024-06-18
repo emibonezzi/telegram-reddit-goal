@@ -1,7 +1,7 @@
 const getGoals = require("./handlers/getGoals");
 require("dotenv").config();
 
-async function main(event, context) {
+module.exports.handler = async function (event, context) {
   try {
     // Parse the event body
     const body = JSON.parse(event.body);
@@ -36,6 +36,4 @@ async function main(event, context) {
       }),
     };
   }
-}
-
-main();
+};
