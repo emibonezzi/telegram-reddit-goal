@@ -15,10 +15,15 @@ module.exports.handler = async function (event, context) {
     // Retrieve from db list of goals
     const goals = await getGoals();
     const inlineResults = goals.map((item) => ({
-      type: "article",
+      type: "video",
       id: item._id,
+      video_url: item.url
+        ? item.url
+        : "https://streamff.com/uploads/1718640492985.mp4?autoplay=true&loop=true",
+      mime_type: "video/mp4",
+      thumbnail_url:
+        "https://images4.sport.optus.com.au/resources/images/1920x1080/https://images.sport.optus.com.au/resources/images/link/b91e5781-848b-378f-a7f5-96c15f37a8d8/ae1676d1-f800-4906-ab70-4926d16aa1fc/1710453496729/4:0:1912:1080/2560*1440/EURO2024_HighlightsShow.jpg",
       title: item.title,
-      message_text: "This is the second item",
     }));
 
     console.log("Results", inlineResults);
