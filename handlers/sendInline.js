@@ -8,5 +8,6 @@ module.exports = async function (inlineQueryId, results) {
   const res = await axios.post(url, {
     inline_query_id: inlineQueryId,
     results: results,
+    cache_time: 0,
   });
 };
