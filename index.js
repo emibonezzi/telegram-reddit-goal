@@ -1,11 +1,10 @@
-const axios = require("axios");
 const getGoals = require("./handlers/getGoals");
 
-exports.handler = async (event, context) => {
+module.exports.handler = async function (event, context) {
   try {
     // Parse the event body
-    const body = JSON.parse(event.body);
-    console.log("Parsed body:", body);
+    /* const body = JSON.parse(event.body);
+    console.log("Parsed body:", body); */
 
     // Retrieve from db list of goals
     const goals = await getGoals();
