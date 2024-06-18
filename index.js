@@ -17,12 +17,10 @@ module.exports.handler = async function (event, context) {
     const inlineResults = goals.map((item) => ({
       type: "video",
       id: item._id,
-      video_url: item.url
-        ? item.url
-        : "https://streamff.com/uploads/1718640492985.mp4?autoplay=true&loop=true",
+      video_url: item.url,
       mime_type: "video/mp4",
       thumbnail_url:
-        "https://images4.sport.optus.com.au/resources/images/1920x1080/https://images.sport.optus.com.au/resources/images/link/b91e5781-848b-378f-a7f5-96c15f37a8d8/ae1676d1-f800-4906-ab70-4926d16aa1fc/1710453496729/4:0:1912:1080/2560*1440/EURO2024_HighlightsShow.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/8c/57/0f/8c570f5e-21c3-5042-4149-565da7fee604/AppIcon-0-0-1x_U007ephone-0-6-0-0-85-220.png/256x256bb.jpg",
       title: item.title,
     }));
 
