@@ -30,7 +30,7 @@ module.exports.handler = async function (event, context) {
     console.log("Results", inlineResults);
 
     // send inline results
-    await sendInline(inlineQueryId, inlineResults);
+    await sendInline(inlineQueryId, inlineResults.slice(0, 15));
 
     return {
       statusCode: 200,
