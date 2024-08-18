@@ -20,9 +20,8 @@ module.exports.handler = async function (event, context) {
         id: item._id,
         video_url: item.url,
         mime_type: "video/mp4",
-        thumbnail_url:
-          "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/8c/57/0f/8c570f5e-21c3-5042-4149-565da7fee604/AppIcon-0-0-1x_U007ephone-0-6-0-0-85-220.png/256x256bb.jpg",
         title: item.title,
+        caption: item.title,
       }))
       .slice()
       .reverse();
@@ -30,7 +29,7 @@ module.exports.handler = async function (event, context) {
     console.log("Results", inlineResults);
 
     // send inline results
-    await sendInline(inlineQueryId, inlineResults.slice(0, 15));
+    await sendInline(inlineQueryId, inlineResults.slice(0, 50));
 
     return {
       statusCode: 200,
